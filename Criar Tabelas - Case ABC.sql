@@ -1,4 +1,4 @@
-CREATE TABLE TIPO_PESSOA ( 			 -- criando a tabela
+CREATE TABLE TIPO_PESSOA ( 	     -- criando a tabela
 	
     ID_TIPO_PESSOA integer not null, -- coluna id_tipo_pessa
     DESCRICAO VARCHAR(255) not null, -- coluna que descreve cada id
@@ -13,13 +13,13 @@ INSERT INTO TIPO_PESSOA (ID_TIPO_PESSOA, DESCRICAO) VALUES (1, 'Pessoa Física')
 
 CREATE TABLE PESSOA (
 	ID_PESSOA INT PRIMARY KEY not null, 								 -- medida adicional de segurança e organização dos dados
-	NOME VARCHAR(255) not null,						 					 -- irá utlizar somente o que foi ocupado
-	CPF_CNPJ VARCHAR(14) not null, 										 -- não pode ser char porque cpf so tem 11 digitos
+	NOME VARCHAR(255) not null,						 			 -- irá utlizar somente o que foi ocupado
+	CPF_CNPJ VARCHAR(14) not null, 									 -- não pode ser char porque cpf so tem 11 digitos
 	DATA_NASCIMENTO DATE CHECK (DATA_NASCIMENTO <= CURRENT_DATE AND DATA_NASCIMENTO <= CURRENT_DATE - INTERVAL '18 years'), -- verificação de idade <18 [V]
-	ID_TIPO_PESSOA INT not null, 										 -- coluna ID_TIPO_PESSOA
-	DATA_CRIACAO TIMESTAMP DEFAULT CURRENT_TIMESTAMP,					 -- Coluna de Data, coloca o dia que foi criado o dado
-    DATA_ATUALIZACAO TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 				 -- Coluna Data Atualização, coloca o dia que o dado foi modificado pela ultima vez
-	FOREIGN KEY (ID_TIPO_PESSOA) REFERENCES TIPO_PESSOA(ID_TIPO_PESSOA), -- referenciando a chave estrangeira a tabela TIPO_PESSOA
+	ID_TIPO_PESSOA INT not null, 									 -- coluna ID_TIPO_PESSOA
+	DATA_CRIACAO TIMESTAMP DEFAULT CURRENT_TIMESTAMP,					         -- Coluna de Data, coloca o dia que foi criado o dado
+    DATA_ATUALIZACAO TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 				                 -- Coluna Data Atualização, coloca o dia que o dado foi modificado pela ultima vez
+	FOREIGN KEY (ID_TIPO_PESSOA) REFERENCES TIPO_PESSOA(ID_TIPO_PESSOA), 				 -- referenciando a chave estrangeira a tabela TIPO_PESSOA
 	
 	constraint un_pss_cpf_cnpj unique (CPF_CNPJ)
 );
